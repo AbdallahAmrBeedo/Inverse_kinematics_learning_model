@@ -39,3 +39,37 @@ for q1 in q1_array:
 df = pd.DataFrame(data_set)
 
 df.to_csv("manipulator_dataset_small.csv", index=False)
+
+q1_array = np.linspace(0,180,100)
+q2_array = np.linspace(0,180,100)
+
+data_set = {"x":[], "y":[], "q1":[], "q2": []}
+
+for q1 in q1_array:
+    for q2 in q2_array:
+        x , y = forward_kinematic_model(q1, q2)
+        data_set["x"].append(x)
+        data_set["y"].append(y)
+        data_set["q1"].append(q1)
+        data_set["q2"].append(q2)
+
+df = pd.DataFrame(data_set)
+
+df.to_csv("manipulator_dataset_medium.csv", index=False)
+
+q1_array = np.linspace(0,180,200)
+q2_array = np.linspace(0,180,200)
+
+data_set = {"x":[], "y":[], "q1":[], "q2": []}
+
+for q1 in q1_array:
+    for q2 in q2_array:
+        x , y = forward_kinematic_model(q1, q2)
+        data_set["x"].append(x)
+        data_set["y"].append(y)
+        data_set["q1"].append(q1)
+        data_set["q2"].append(q2)
+
+df = pd.DataFrame(data_set)
+
+df.to_csv("manipulator_dataset_large.csv", index=False)

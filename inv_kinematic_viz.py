@@ -63,7 +63,8 @@ def inv_kine_learning_model(x:float, y:float):
     return angles
 
 if __name__ == "__main__":
-    inv_kine_model = tf.keras.models.load_model('invkine_model_large.h5')
+    model_size = "small" # chose the model size: "large", "medium", "small"
+    inv_kine_model = tf.keras.models.load_model(f'invkine_model_{model_size}.h5')
     print("Model Loaded")
     while True:
         try:
