@@ -25,6 +25,7 @@ def forward_kinematic_model(q1:float, q2:float) -> tuple:
     y_1 = A1 * sin(q1)
     x_e = A1 * cos(q1) + A2 * cos(q1+q2)
     y_e = A1 * sin(q1) + A2 * sin(q1+q2)
+    print(f"end effector position: ({x_e}, {y_e})")
     return x_1, y_1, x_e, y_e
 
 def plot_manipulator(q1:float, q2:float):
@@ -57,12 +58,21 @@ def inv_kine_learning_model(x:float, y:float):
     Returns:
         (q1, q2): angles of the 2 link manipulator to give the desired position
     """
-    inv_kine_model = tf.keras.models.load_model('invkine_model.h5')
-
-    angles = inv_kine_model.predict([[x,y]])[0]
+    angles = np.array(inv_kine_model(tf.constant([[x,y]])))[0]
 
     return angles
 
-q1, q2 = inv_kine_learning_model(2, 0)
-
-print(q1, q2)
+if __name__ == "__main__":
+    inv_kine_model = tf.keras.models.load_model('invkine_model_large.h5')
+    print("Model Loaded")
+    while True:
+        try:
+            print("Press Ctrl+C and hit Enter to exit.")
+            x = float(input("Enter the x position: "))
+            y = float(input("Enter the y position: "))
+            q1, q2 = inv_kine_learning_model(x, y)
+            print("Close the figure window to continue...")
+            plot_manipulator(q1, q2)
+        except KeyboardInterrupt:
+            print("Ending Program...")
+            break

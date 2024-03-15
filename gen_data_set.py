@@ -38,4 +38,4 @@ for q1 in q1_array:
 
 df = pd.DataFrame(data_set)
 
-df.to_csv("manipulator_dataset.csv", index=False)
+df.to_csv("manipulator_dataset_small.csv", index=False)
