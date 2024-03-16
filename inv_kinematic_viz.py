@@ -35,7 +35,6 @@ def plot_manipulator(q1:float, q2:float):
     Args:
         q1: angle of the first link in degrees. (float)
         q2: angle of the second link in degrees. (float)
-    
     """
     x_1, y_1, x_e, y_e = forward_kinematic_model(q1, q2)
     plt.scatter([0], [0])
@@ -64,7 +63,7 @@ def inv_kine_learning_model(x:float, y:float):
 
 if __name__ == "__main__":
     model_size = "small" # chose the model size: "large", "medium", "small"
-    inv_kine_model = tf.keras.models.load_model(f'invkine_model_{model_size}.h5')
+    inv_kine_model = tf.keras.models.load_model(f'models/invkine_model_{model_size}.h5')
     print("Model Loaded")
     while True:
         try:
