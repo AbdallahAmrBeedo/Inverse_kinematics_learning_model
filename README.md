@@ -3,11 +3,13 @@ ANN model fitted on a data from a 2 link manipulator forward kineamtics to drive
 
 ## Install
 
-```git clone https://github.com/AbdallahAmrBeedo/Inverse_kinematics_learning_model.git ```
+```
+git clone https://github.com/AbdallahAmrBeedo/Inverse_kinematics_learning_model.git
 
-```cd Inverse_kinematics_learning_model/```
+cd Inverse_kinematics_learning_model/
 
-```chmod a+x install_dep.sh```
+chmod a+x install_dep.sh
 
-```./install_dep.sh```
+./install_dep.sh
 
+```
