@@ -3,6 +3,14 @@ ANN model fitted on a data from a 2 link manipulator forward kineamtics to drive
 
 ## Install
 
+### Dependencies
+- numpy
+- pandas
+- matplotlib
+- livelossplot
+- scikit-learn
+- tensorflow
+
 ```bash
 git clone https://github.com/AbdallahAmrBeedo/Inverse_kinematics_learning_model.git
 
@@ -13,3 +21,13 @@ chmod a+x install_dep.sh
 ./install_dep.sh
 
 ```
+
+## Tutorial
+
+### Generate Dataset
+to generate the dataset for the manipulator, run
+```bash
+python3 gen_data_set.py
+```
+3 files will be created in ```/data``` directory.
+

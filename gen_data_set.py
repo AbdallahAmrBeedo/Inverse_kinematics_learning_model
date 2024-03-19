@@ -14,34 +14,29 @@ def forward_kinematic_model(q1:float, q2:float) -> tuple:
         q2: angle of the second link in degrees. (float)
     
     Returns:
-        (x,y): position of the end effector. (tuple)
+        (x, y, theta): position and orientation of the end effector. (tuple)
     """
-    q1 = radians(q1)
-    q2 = radians(q2)
     x = A1 * cos(q1) + A2 * cos(q1+q2)
     y = A1 * sin(q1) + A2 * sin(q1+q2)
-    return x,y
+    theta = q1 + q2
+    return round(x,4),round(y,4), theta
 
-models = ("small", "medium", "large")
-n_angles = 50 # number of divisions 
+n_angles = 200 # number of divisions 
 
-for model in models:
-    
-    q1_array = np.linspace(0,180,n_angles)
-    q2_array = np.linspace(0,180,n_angles)
+q1_array = np.linspace(0,1.8*pi,n_angles)
+q2_array = np.linspace(0,1.8*pi,n_angles)
 
-    data_set = {"x":[], "y":[], "q1":[], "q2": []}
+data_set = {"x":[], "y":[], "theta":[], "q1":[], "q2": []}
 
-    for q1 in q1_array:
-        for q2 in q2_array:
-            x , y = forward_kinematic_model(q1, q2)
-            data_set["x"].append(x)
-            data_set["y"].append(y)
-            data_set["q1"].append(q1)
-            data_set["q2"].append(q2)
+for q1 in q1_array:
+    for q2 in q2_array:
+        x , y, theta = forward_kinematic_model(q1, q2)
+        data_set["x"].append(x)
+        data_set["y"].append(y)
+        data_set["theta"].append(theta)
+        data_set["q1"].append(q1)
+        data_set["q2"].append(q2)
 
-    df = pd.DataFrame(data_set)
+df = pd.DataFrame(data_set)
 
-    df.to_csv(f"data/manipulator_dataset_{model}.csv", index=False)
-
-    n_angles *= 2
+df.to_csv(f"data/manipulator_dataset.csv", index=False)
