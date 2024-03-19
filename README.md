@@ -24,10 +24,10 @@ chmod a+x install_dep.sh
 
 ## Tutorial
 
-### Generate Dataset
+### Dataset Generation
 to generate the dataset for the manipulator, run
 ```bash
 python3 gen_data_set.py
 ```
-3 files will be created in ```/data``` directory.
+A csv will be created in ```/data``` directory with 40000.
 

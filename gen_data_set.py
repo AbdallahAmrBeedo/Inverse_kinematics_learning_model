@@ -21,7 +21,7 @@ def forward_kinematic_model(q1:float, q2:float) -> tuple:
     theta = q1 + q2
     return round(x,4),round(y,4), theta
 
-n_angles = 200 # number of divisions 
+n_angles = 80 # number of divisions 
 
 q1_array = np.linspace(0,1.8*pi,n_angles)
 q2_array = np.linspace(0,1.8*pi,n_angles)
